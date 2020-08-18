@@ -1,5 +1,10 @@
 let itemList = document.getElementById('list');
 
+document.addEventListener('DOMContentLoaded', function() {
+    let backGround = document.querySelector("body")
+    backGround.style.backgroundImage = 'url(./images/background_toDo.png)'
+});
+
 const addItem = (e) => {
     let input = document.getElementById('input').value;
     //check input length

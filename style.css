@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     font-family: 'East Sea Dokdo', cursive;
     background-size: cover;
+    background-color: darksalmon;
 }
 
 h1 {
@@ -10,7 +11,7 @@ h1 {
 }
 .container {
     display: flex;
-    height: 25%;
+    height: 50%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
