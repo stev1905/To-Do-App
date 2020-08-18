@@ -3,22 +3,27 @@ html, body {
     font-family: 'East Sea Dokdo', cursive;
     background-size: cover;
     background-color: darksalmon;
+    font-size: 24px;
 }
 
 h1 {
     text-decoration: underline;
-    font-size: 44px;
+    font-size: 48px;
+}
+
+ul {
+    height: 50%;
 }
 .container {
     display: flex;
-    height: 50%;
+    height: 100%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
 .list-item {
-    font-size: 30px;
+    font-size: 34px;
 }
 
 .glyphicon-remove {
