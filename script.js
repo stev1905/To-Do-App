@@ -1,5 +1,7 @@
 let itemList = document.getElementById('list');
 let itemHeader = document.getElementById('input-header');
+let button = document.getElementById('button');
+let input = document.getElementById('input')
 
 document.addEventListener('DOMContentLoaded', function() {
     let backGround = document.querySelector("body")
@@ -63,10 +65,10 @@ const strikeItem = (e) => {
 }
 
 //Add event via click
-document.getElementById('button').addEventListener('click', addItem);
+button.addEventListener('click', addItem);
 
 //Add event via Enter
-document.getElementById('input').addEventListener('keyup', function(e) {
+input.addEventListener('keyup', function(e) {
     if(e.key === 'Enter') {
         addItem();
     }
