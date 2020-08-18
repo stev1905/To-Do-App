@@ -15,21 +15,24 @@ const addItem = (e) => {
         //create new li
         let li = document.createElement('li');
         li.className = 'list-item';
-
         let textSpan = document.createElement('span');
         textSpan.className = 'list-text';
         textSpan.appendChild(document.createTextNode(input));
         li.appendChild(textSpan);
 
+        //create check button
         let checkButton = document.createElement('span');
         checkButton.className = 'glyphicon glyphicon-ok';
-        li.appendChild(checkButton);        
+        li.appendChild(checkButton);  
+
         //create delete button
         let deleteButton = document.createElement('span');
         deleteButton.className = 'glyphicon glyphicon-trash';
         li.appendChild(deleteButton);
+
         //append new list item
         itemList.appendChild(li);
+
         //clear input box
         document.getElementById('input').value = '';
     } else {
