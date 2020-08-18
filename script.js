@@ -13,10 +13,13 @@ const addItem = (e) => {
         let li = document.createElement('li');
         li.className = 'list-item';
         li.appendChild(document.createTextNode(input));
-        
+
+        let checkButton = document.createElement('span');
+        checkButton.className = 'glyphicon glyphicon-ok';
+        li.appendChild(checkButton);        
         //create delete button
         let deleteButton = document.createElement('span');
-        deleteButton.className = 'glyphicon glyphicon-remove';
+        deleteButton.className = 'glyphicon glyphicon-trash';
         li.appendChild(deleteButton);
         //append new list item
         itemList.appendChild(li);
@@ -28,11 +31,19 @@ const addItem = (e) => {
 }
 
 const removeItem = (e) => {
-    if(e.target.classList.contains('glyphicon-remove')) {
+    console.log(e.target.parentElement)
+    if(e.target.classList.contains('glyphicon-trash')) {
         if(confirm('Do you want to delete this item?')) {
             let li = e.target.parentElement;
             itemList.removeChild(li);
         }
+    }
+}
+
+const strikeItem = (e) => {
+    if(e.target.classList.contains('glyphicon-ok')) {
+        let li = e.target.parentElement;
+        li.style.textDecoration = "line-through";
     }
 }
 
@@ -46,6 +57,9 @@ document.getElementById('input').addEventListener('keyup', function(e) {
 
 //Delete event
 itemList.addEventListener('click', removeItem);
+
+//strikeout event
+itemList.addEventListener('click', strikeItem);
 
 
 

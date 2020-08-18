@@ -26,6 +26,12 @@ ul {
     font-size: 34px;
 }
 
-.glyphicon-remove {
-    color: darkred;
+.glyphicon-trash {
+    font-size: 18px;
+    color: black;
+}
+
+.glyphicon-ok {
+    font-size: 18px;
+    color: lightgreen;
 }
