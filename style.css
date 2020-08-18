@@ -11,27 +11,44 @@ h1 {
     font-size: 48px;
 }
 
-ul {
+#list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 50%;
+    width: 100%;
 }
+
 .container {
     display: flex;
     height: 100%;
+    width: 100%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
 .list-item {
+    display: flex;
+    align-items: center;
+    width: 40%;
     font-size: 34px;
 }
 
+.list-text {
+    padding-left: 10%;
+}
+
 .glyphicon-trash {
-    font-size: 18px;
+    font-size: 18px; 
     color: black;
+    align-self: center;
 }
 
 .glyphicon-ok {
+    align-self: center;
+    margin-left: auto;
+    width: 50px;
     font-size: 18px;
-    color: lightgreen;
+    color: black;
 }

@@ -1,4 +1,5 @@
 let itemList = document.getElementById('list');
+let itemHeader = document.getElementById('input-header');
 
 document.addEventListener('DOMContentLoaded', function() {
     let backGround = document.querySelector("body")
@@ -12,7 +13,11 @@ const addItem = (e) => {
         //create new li
         let li = document.createElement('li');
         li.className = 'list-item';
-        li.appendChild(document.createTextNode(input));
+
+        let textSpan = document.createElement('span');
+        textSpan.className = 'list-text';
+        textSpan.appendChild(document.createTextNode(input));
+        li.appendChild(textSpan);
 
         let checkButton = document.createElement('span');
         checkButton.className = 'glyphicon glyphicon-ok';
@@ -31,24 +36,36 @@ const addItem = (e) => {
 }
 
 const removeItem = (e) => {
-    console.log(e.target.parentElement)
     if(e.target.classList.contains('glyphicon-trash')) {
         if(confirm('Do you want to delete this item?')) {
             let li = e.target.parentElement;
-            itemList.removeChild(li);
+            itemList.removeChild(li)
+        }
+    }
+}
+
+const clearAllItems = (e) => {
+    if(e.target.id === 'clear') {
+        if(confirm('Are you sure you want to clear the entire list?')) {
+            while (itemList.firstChild) {
+                itemList.removeChild(itemList.firstChild);
+            }
         }
     }
 }
 
 const strikeItem = (e) => {
     if(e.target.classList.contains('glyphicon-ok')) {
-        let li = e.target.parentElement;
+        let li = e.target.parentElement.firstChild;
+        e.target.style.color = 'lightgreen'
         li.style.textDecoration = "line-through";
     }
 }
 
-//Add event
+//Add event via click
 document.getElementById('button').addEventListener('click', addItem);
+
+//Add event via Enter
 document.getElementById('input').addEventListener('keyup', function(e) {
     if(e.key === 'Enter') {
         addItem();
@@ -60,6 +77,9 @@ itemList.addEventListener('click', removeItem);
 
 //strikeout event
 itemList.addEventListener('click', strikeItem);
+
+//clear All Items event
+itemHeader.addEventListener('click', clearAllItems);
 
 
 
