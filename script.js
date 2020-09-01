@@ -6,7 +6,7 @@ let button = document.getElementById('button');
 let input = document.getElementById('input');
 
 const savedTodos =  getSavedTodos();
-savedTodos.forEach(todo=> renderItem(todo));
+savedTodos.forEach(todo => renderItem(todo));
 
 document.addEventListener('DOMContentLoaded', function() {
     let backGround = document.querySelector("body")
@@ -23,9 +23,14 @@ function renderItem(todo) {
 
     //create check button
     let checkButton = document.createElement('span');
+    checkButton.id = todo.id;
     checkButton.className = 'glyphicon glyphicon-ok';
-    li.appendChild(checkButton);  
-
+    li.appendChild(checkButton); 
+    
+    if(todo.isChecked === true) {
+        checkButton.style.color = 'lightgreen';
+        li.firstChild.style.textDecoration = "line-through";
+    } 
     //create delete button
     let deleteButton = document.createElement('span');
     deleteButton.id = todo.id;
@@ -55,10 +60,10 @@ function addItem(e) {
         //create new li
         const todo = {
             id: Math.floor(new Date().getTime() * Math.random()),
-            text: input
+            text: input,
+            isChecked: false
         }
         renderItem(todo);
-
         //get back saved toDos from local storage ls (assume its an array)
         let savedTodos = getSavedTodos();
 
@@ -71,7 +76,6 @@ function addItem(e) {
         alert('Please input your task');
     }
 }
-
 //Delete event
 itemList.addEventListener('click', removeItem);
 function removeItem(e) {
@@ -82,6 +86,7 @@ function removeItem(e) {
 
             const savedTodos = getSavedTodos();
             const todoDelete = savedTodos.find(todo => todo.id.toString() === e.target.id);
+            console.log(todoDelete)
             const index = savedTodos.indexOf(todoDelete);
             savedTodos.splice(index, 1);
             localStorage.setItem(SAVED_TODOS_KEY, JSON.stringify(savedTodos));
@@ -102,13 +107,22 @@ const clearAllItems = (e) => {
 itemHeader.addEventListener('click', clearAllItems);
 
 const strikeItem = (e) => {
-    if(e.target.classList.contains('glyphicon-ok')) {
+    const savedTodos = getSavedTodos();
+    const todoCheck = savedTodos.find(todo => todo.id.toString() === e.target.id);
+    todoCheck.isChecked = !todoCheck.isChecked;
+    if(todoCheck.isChecked === true) {
         let li = e.target.parentElement.firstChild;
         e.target.style.color = 'lightgreen';
         li.style.textDecoration = "line-through";
+    } else {
+        let li = e.target.parentElement.firstChild;
+        e.target.style.color = 'black';
+        li.style.textDecoration = "none";
     }
+    localStorage.setItem(SAVED_TODOS_KEY, JSON.stringify(savedTodos));
 }
 itemList.addEventListener('click', strikeItem);
+
 
 
 
